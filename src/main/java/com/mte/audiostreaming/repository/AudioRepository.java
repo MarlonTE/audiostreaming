@@ -1,31 +1,34 @@
 package com.mte.audiostreaming.repository;
 
+import com.mte.audiostreaming.model.AudioFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mte.audiostreaming.model.AudioFile;
 import java.util.List;
-
 
 @Repository
 public interface AudioRepository extends JpaRepository<AudioFile, Long> {
 
-    List<AudioFile> findByName(String name);
-    List<AudioFile> findByAlbum(String album);
-    List<AudioFile> findByArtist(String artist);
-    List<AudioFile> findByGenre(String genre);
+    // Búsquedas
+    List<AudioFile> findByNameContainingIgnoreCase(String name);
+    List<AudioFile> findByArtistsContainingIgnoreCase(String artist);
+    List<AudioFile> findByGenresContainingIgnoreCase(String genre);
+    List<AudioFile> findByAlbumContainingIgnoreCase(String album);
     List<AudioFile> findByYear(int year);
 
-    List<AudioFile> sortListByNameAsc();
-    List<AudioFile> sortListByNameDesc();
-    List<AudioFile> sortListByAlbumAsc();
-    List<AudioFile> sortListByAlbumDesc();
-    List<AudioFile> sortListByArtistAsc();
-    List<AudioFile> sortListByArtistDesc();
-    List<AudioFile> sortListByGenreAsc();
-    List<AudioFile> sortListByGenreDesc();
-    List<AudioFile> sortListByYearAsc();
-    List<AudioFile> sortListByYearDesc();
-    List<AudioFile> sortListByDurationAsc();
-    List<AudioFile> sortListByDurationDesc();
+    // Ordenamientos válidos (por campos simples)
+    List<AudioFile> findAllByOrderByNameAsc();
+    List<AudioFile> findAllByOrderByNameDesc();
+    List<AudioFile> findAllByOrderByAlbumAsc();
+    List<AudioFile> findAllByOrderByAlbumDesc();
+    List<AudioFile> findAllByOrderByYearAsc();
+    List<AudioFile> findAllByOrderByYearDesc();
+    List<AudioFile> findAllByOrderByDurationAsc();
+    List<AudioFile> findAllByOrderByDurationDesc();
+    List<AudioFile> findAllByOrderByTrackNumberAsc();
+    List<AudioFile> findAllByOrderByTrackNumberDesc();
+
+    // Los de artist y genre se comentan por ser listas
+    // List<AudioFile> findAllByOrderByArtistAsc(); ❌
+    // List<AudioFile> findAllByOrderByGenreAsc();  ❌
 }
