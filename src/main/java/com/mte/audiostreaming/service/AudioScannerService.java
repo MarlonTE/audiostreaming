@@ -59,19 +59,20 @@ public class AudioScannerService {
                     AudioFile audioFile = new AudioFile();
                     audioFile.setName(title);
                     audioFile.setAlbum(album);
-                    audioFile.setArtists(Arrays.stream(artist.split(","))
-                            .map(String::trim)
-                            .toList());
-                    audioFile.setGenres(Arrays.stream(genre.split(","))
-                            .map(String::trim)
-                            .toList());
-
+                    audioFile.setArtists(Arrays.stream(artist
+                        .split(","))
+                        .map(String::trim)
+                        .toList());
+                    audioFile.setGenres(Arrays.stream(genre
+                        .split(","))
+                        .map(String::trim)
+                        .toList());
                     audioFile.setYear(year);
                     audioFile.setAudioPath(file.getAbsolutePath());
 
                     audioRepository.save(audioFile);
 
-                    System.out.println("✔ added: " + title);
+                    System.out.println("✔ Added: " + title);
                 } catch (Exception e) {
                     System.err.println("✘ Error: " + file.getAbsolutePath());
                     e.printStackTrace();
