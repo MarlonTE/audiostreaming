@@ -72,7 +72,7 @@ public class AudioService {
                             Mp3File mp3file = new Mp3File(path.toFile());
                             String filePath = path.toAbsolutePath().toString();
 
-                            AudioFile audioFile = audioRepository.findByPath(filePath)
+                            AudioFile audioFile = audioRepository.findByAudioPath(filePath)
                                     .orElse(new AudioFile());
 
                             audioFile.setAudioPath(filePath);

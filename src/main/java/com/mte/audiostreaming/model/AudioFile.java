@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,9 +25,9 @@ public class AudioFile {
     private Long id;
     private String name;
     private String album;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> artists;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> genres;
     private int year;
     private String coverPath;
