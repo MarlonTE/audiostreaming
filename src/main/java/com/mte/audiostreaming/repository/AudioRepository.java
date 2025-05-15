@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AudioRepository extends JpaRepository<AudioFile, Long>, JpaSpecificationExecutor<AudioFile> {
 
-    Optional<AudioFile> findByPath(String path);
+    Optional<AudioFile> findByAudioPath(String audioPath);
 
 }

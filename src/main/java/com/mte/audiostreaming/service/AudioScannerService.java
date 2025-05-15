@@ -42,17 +42,17 @@ public class AudioScannerService {
 
                     if (mp3file.hasId3v2Tag()) {
                         ID3v2 tag = mp3file.getId3v2Tag();
-                        title = tag.getTitle();
-                        artist = tag.getArtist();
-                        album = tag.getAlbum();
-                        genre = tag.getGenreDescription();
+                        title = tag.getTitle() != null ? tag.getTitle() : file.getName();
+                        artist = tag.getArtist() != null ? tag.getArtist() : "unknown";
+                        album = tag.getAlbum() != null ? tag.getAlbum() : "unknown";
+                        genre = tag.getGenreDescription() != null ? tag.getGenreDescription() : "unknown";
                         year = parseYear(tag.getYear());
                     } else if (mp3file.hasId3v1Tag()) {
                         ID3v1 tag = mp3file.getId3v1Tag();
-                        title = tag.getTitle();
-                        artist = tag.getArtist();
-                        album = tag.getAlbum();
-                        genre = tag.getGenreDescription();
+                        title = tag.getTitle() != null ? tag.getTitle() : file.getName();
+                        artist = tag.getArtist() != null ? tag.getArtist() : "unknown";
+                        album = tag.getAlbum() != null ? tag.getAlbum() : "unknown";
+                        genre = tag.getGenreDescription() != null ? tag.getGenreDescription() : "unknown";
                         year = parseYear(tag.getYear());
                     }
 

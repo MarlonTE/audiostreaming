@@ -3,6 +3,8 @@ package com.mte.audiostreaming.specification;
 import org.springframework.data.jpa.domain.Specification;
 import com.mte.audiostreaming.model.AudioFile;
 
+import java.util.Arrays;
+
 public class AudioFileSpecification {
 
     @SuppressWarnings("unused")
@@ -57,5 +59,16 @@ public class AudioFileSpecification {
                 cb.isMember(exactTerm, root.get("genres"))
             );
         };
+    }
+
+    public static void processAudioFile(AudioFile audioFile, String artist, String genre) {
+        audioFile.setArtists(Arrays.stream(artist
+            .split(","))
+            .map(s -> s.trim().toLowerCase())
+            .toList());
+        audioFile.setGenres(Arrays.stream(genre
+            .split(","))
+            .map(s -> s.trim().toLowerCase())
+            .toList());
     }
 }
